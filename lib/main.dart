@@ -30,6 +30,22 @@ class UTip extends StatefulWidget {
 }
 
 class _UTipState extends State<UTip> {
+  int _personCount = 1;
+
+  void increment() {
+    setState(() {
+      _personCount = _personCount + 1;
+    });
+  }
+
+  void decrement() {
+    setState(() {
+      if (_personCount > 0) {
+        _personCount--;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     print(context.owner.toString());
@@ -64,6 +80,56 @@ class _UTipState extends State<UTip> {
                   ),
                 ],
               )),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              // width: 100,
+              // height: 100,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border:
+                      Border.all(color: theme.colorScheme.primary, width: 2)),
+              child: Column(
+                children: [
+                  TextField(
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.attach_money),
+                        labelText: "Bill Amount"),
+                    keyboardType: TextInputType.number,
+                    onChanged: (String value) {
+                      print("Value: $value");
+                    },
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Split",
+                        style: theme.textTheme.titleMedium,
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                              color: theme.colorScheme.primary,
+                              onPressed: decrement,
+                              icon: const Icon(Icons.remove)),
+                          Text(
+                            "$_personCount",
+                            style: theme.textTheme.titleMedium,
+                          ),
+                          IconButton(
+                              color: theme.colorScheme.primary,
+                              onPressed: increment,
+                              icon: const Icon(Icons.add))
+                        ],
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
