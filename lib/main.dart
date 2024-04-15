@@ -67,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "A truly rich life contains love  and art in abundance",
     "Accept something that you can't change",
     "Advanture can be real happiness",
+    ""
   ];
 
   void _randomFortune() {
@@ -132,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 300,
               fit: BoxFit.cover,
             ),
-            Text(
+            const Text(
               'Your fortune is: ',
               style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
             ),
@@ -140,13 +141,13 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  '${_currentFortune}',
+                  _currentFortune,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
             ),
             ElevatedButton(
-                onPressed: _randomFortune, child: Text("Get Fortune")),
+                onPressed: _randomFortune, child: const Text("Get Fortune")),
           ],
         ),
       ),
