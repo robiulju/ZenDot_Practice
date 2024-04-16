@@ -37,6 +37,15 @@ class _UTipState extends State<UTip> {
   int _personCount = 1;
 
   double _tipPercentage = 0.0;
+  double _billTotal = .0;
+
+  double totalPerPerson() {
+    return ((_billTotal * _tipPercentage) + _billTotal) / _personCount;
+  }
+
+  double totalTip() {
+    return (_billTotal * _tipPercentage);
+  }
 
   void increment() {
     setState(() {
@@ -46,7 +55,7 @@ class _UTipState extends State<UTip> {
 
   void decrement() {
     setState(() {
-      if (_personCount > 0) {
+      if (_personCount > 1) {
         _personCount--;
       }
     });
@@ -56,6 +65,8 @@ class _UTipState extends State<UTip> {
   Widget build(BuildContext context) {
     print(context.owner.toString());
     var theme = Theme.of(context);
+    double total = totalPerPerson();
+    double totalT = totalTip();
 
     final style = theme.textTheme.titleMedium!.copyWith(
         color: theme.colorScheme.onPrimary, fontWeight: FontWeight.bold);
@@ -79,7 +90,7 @@ class _UTipState extends State<UTip> {
                     style: style,
                   ),
                   Text(
-                    "\$23.89",
+                    "$total",
                     style: style.copyWith(
                         color: theme.colorScheme.onPrimary,
                         fontSize: theme.textTheme.displaySmall?.fontSize),
@@ -99,9 +110,11 @@ class _UTipState extends State<UTip> {
               child: Column(
                 children: [
                   BillAmountField(
-                    billAmount: "100",
+                    billAmount: _billTotal.toString(),
                     onChanged: (value) {
-                      print(value);
+                      setState(() {
+                        _billTotal = double.parse(value);
+                      });
                     },
                   ),
                   Row(
@@ -128,7 +141,7 @@ class _UTipState extends State<UTip> {
                         "Tip",
                         style: theme.textTheme.titleMedium,
                       ),
-                      const Text("\$20")
+                      Text("$totalT")
                     ],
                   ),
                   // == Sider Text ==
@@ -152,4 +165,3 @@ class _UTipState extends State<UTip> {
     );
   }
 }
-
