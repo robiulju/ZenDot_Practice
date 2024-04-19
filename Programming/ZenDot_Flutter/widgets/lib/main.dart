@@ -39,25 +39,52 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: Center(
-          child: Column(
-            children: [
-              SizedBox(
-                width: 200,
-                height: 200,
-                child: Image.asset("assets/images/flutter.png"),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              Container(
-                width: 200,
-                height: 200,
-                color: Colors.amber,
-                child: Image.asset("assets/images/Avengers.jpeg"),
-              )
-            ],
-          ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Text("R1"),
+                Column(
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {}, child: const Text("Button1")),
+                    ElevatedButton(
+                        onPressed: () {}, child: const Text("Button2")),
+                    ElevatedButton(
+                        onPressed: () {}, child: const Text("Button3")),
+                    ElevatedButton(
+                        onPressed: () {}, child: const Text("Button4")),
+                  ],
+                ),
+                const Text("R2"),
+                const Text("R3")
+              ],
+            ),
+            const Text(
+              "A",
+              style: TextStyle(fontSize: 40),
+            ),
+            const Text(
+              "B",
+              style: TextStyle(fontSize: 40),
+            ),
+            const Text(
+              "C",
+              style: TextStyle(fontSize: 40),
+            ),
+            const Text(
+              "D",
+              style: TextStyle(fontSize: 40),
+            ),
+            const Text(
+              "E",
+              style: TextStyle(fontSize: 40),
+            ),
+            ElevatedButton(onPressed: () {}, child: const Text("Click!"))
+          ],
         ));
   }
 }
