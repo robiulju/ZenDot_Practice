@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,42 +39,25 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: OutlinedButton(
-          child: const Text("Outlined Button"),
-          onPressed: () {
-            print("Outlined Clicked");
-          },
-          onLongPress: () {
-            print("Outlined Button long pressed");
-          },
-        )
-
-        //  ElevatedButton(
-        //   child: Text("Elevated Button"),
-        //   onPressed: () {
-        //     print("Button Pressed");
-        //   },
-        //   onLongPress: () {
-        //     print("Long pressed");
-        //   },
-        // )
-
-        //
-        // TextButton(
-        //   child: const Text(
-        //     "Click Here!",
-        //     style: TextStyle(color: Colors.blue),
-        //   ),
-        //   onPressed: () {
-        //     print(
-        //       "Text Button Tapped",
-        //     );
-        //   },
-        //   onLongPress: () {
-        //     print("Buton pressed more than 3 sec");
-        //   },
-        // )
-
-        );
+        body: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                width: 200,
+                height: 200,
+                child: Image.asset("assets/images/flutter.png"),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              Container(
+                width: 200,
+                height: 200,
+                color: Colors.amber,
+                child: Image.asset("assets/images/Avengers.jpeg"),
+              )
+            ],
+          ),
+        ));
   }
 }
