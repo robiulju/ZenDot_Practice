@@ -38,18 +38,42 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: Center(
-          child: Container(
-            width: 100,
-            height: 100,
-            color: Colors.redAccent,
-            child: Center(
-              child: Text(
-                "This is center of Container",
-                style: TextStyle(color: Colors.blue),
-              ),
-            ),
-          ),
-        ));
+        body: OutlinedButton(
+          child: const Text("Outlined Button"),
+          onPressed: () {
+            print("Outlined Clicked");
+          },
+          onLongPress: () {
+            print("Outlined Button long pressed");
+          },
+        )
+
+        //  ElevatedButton(
+        //   child: Text("Elevated Button"),
+        //   onPressed: () {
+        //     print("Button Pressed");
+        //   },
+        //   onLongPress: () {
+        //     print("Long pressed");
+        //   },
+        // )
+
+        //
+        // TextButton(
+        //   child: const Text(
+        //     "Click Here!",
+        //     style: TextStyle(color: Colors.blue),
+        //   ),
+        //   onPressed: () {
+        //     print(
+        //       "Text Button Tapped",
+        //     );
+        //   },
+        //   onLongPress: () {
+        //     print("Buton pressed more than 3 sec");
+        //   },
+        // )
+
+        );
   }
 }
