@@ -27,60 +27,53 @@ class DashBoardScreen extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Dialog"),
+        title: const Text("Bottom Sheet"),
       ),
 
-      body: Center(child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-            ElevatedButton(onPressed: (){
-              // Get.defaultDialog();
-              Get.defaultDialog(
-                title: "Dialog Title",
-                titleStyle: const TextStyle(fontSize: 25),
-                middleText: "This is middle text",
-                middleTextStyle: const TextStyle(fontSize: 20),
-                backgroundColor: Colors.purple,
-                radius: 80,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Get.bottomSheet(
+                  Container(
+                    child: Wrap(
+                      children: [
+                        ListTile(
+                          leading: Icon(Icons.wb_sunny_outlined),
+                          title: Text("Light Theme"),
+                          onTap: () => {Get.changeTheme(ThemeData.light())},
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.wb_sunny),
+                          title: Text("Dark Theme"),
+                          onTap: () => {Get.changeTheme(ThemeData.dark())},
+                        ),
+                      ],
+                    ),
+                  ),
+                  barrierColor: Colors.greenAccent.shade100,
+                  backgroundColor: Colors.purpleAccent,
+                  isDismissible: true,
 
-                content: const Row(
-                  children: [
-                    CircularProgressIndicator(),
-                    SizedBox(width: 16,),
-                    Expanded(child: Text("Data Loading")),
-                  ],
-                ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    side: BorderSide(color: Colors.white,
+                    style: BorderStyle.solid,
+                    width: 2.0)
+                  ),
 
-                textCancel: "Cancel",
-                cancelTextColor: Colors.white,
-
-                textConfirm: "Confirm",
-                confirmTextColor: Colors.white,
-
-                onCancel: (){
-                  print("Cancel Clicked");
-                },
-                onConfirm: (){
-                  print("Confirm clicked");
-                },
-                buttonColor: Colors.green,
-
-                cancel: const Text("Cancels",style: TextStyle(color: Colors.white),),
-                confirm: const Text("Confirms",style: TextStyle(color:Colors.white),),
-
-                actions: [ElevatedButton(onPressed: (){
-                  Get.back();
-                }, child: const Text("Action-1")),
-                ElevatedButton(onPressed: (){}, child:const Text("Action-2"))
-                ],
-                barrierDismissible: false,
-              );
-
-              
-            }, child: const Text("Show Dialog"))
-          
-          ],),)
+                  enableDrag: true,
+                );
+              },
+              child: const Text("Bottom Sheet"),
+            )
+          ],
+        ),
+      ),
+  
     );
   }
 }
