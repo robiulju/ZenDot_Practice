@@ -12,7 +12,7 @@ class FlutterApp extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return GetMaterialApp(
-        title: "Flutter App",
+        title: "Dialog",
         theme: ThemeData(primarySwatch: Colors.amber),
         home: const DashBoardScreen(),
     );
@@ -27,64 +27,60 @@ class DashBoardScreen extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: const Text("DashBoardScreen"),
+        title: const Text("Dialog"),
       ),
 
       body: Center(child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          OutlinedButton(onPressed: (){
-            Get.snackbar("New Notification", "This will be Snackbar Messgage",
-            snackPosition: SnackPosition.TOP,
-            // titleText: Text("Another Title"),
-            // messageText: Text("Another Message",style: TextStyle(color: Colors.red),)
-            colorText: Colors.amber,
-            backgroundColor: Colors.black,
-            borderRadius: 30,
-            margin: const EdgeInsets.all(10),
-            animationDuration: const Duration(milliseconds: 3000),
-            backgroundGradient: const LinearGradient(colors: [Colors.red,Colors.blue]),
-            borderColor: Colors.black,
-            borderWidth: 3,
-            boxShadows: [const BoxShadow(
-              color: Color.fromARGB(255, 59, 255, 229),
-              offset: Offset(30,50),
-              spreadRadius: 6,
-              blurRadius: 1
-            )],
-            isDismissible: true,
-            // dismissDirection: SnackDismissDirection.HORRIZONTAL,
+            ElevatedButton(onPressed: (){
+              // Get.defaultDialog();
+              Get.defaultDialog(
+                title: "Dialog Title",
+                titleStyle: const TextStyle(fontSize: 25),
+                middleText: "This is middle text",
+                middleTextStyle: const TextStyle(fontSize: 20),
+                backgroundColor: Colors.purple,
+                radius: 80,
 
-            // maxWidth: 300,
-            // duration: Duration(milliseconds: 8000)            
+                content: const Row(
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(width: 16,),
+                    Expanded(child: Text("Data Loading")),
+                  ],
+                ),
 
-            icon: Icon(Icons.send, color: Colors.white,),
-            shouldIconPulse: false,
-            leftBarIndicatorColor: Color.fromARGB(255, 23, 185, 107),
+                textCancel: "Cancel",
+                cancelTextColor: Colors.white,
 
-            // mainButton: 
+                textConfirm: "Confirm",
+                confirmTextColor: Colors.white,
 
-            onTap: (val){
-              print("Snackbar Clicked");
-            },
+                onCancel: (){
+                  print("Cancel Clicked");
+                },
+                onConfirm: (){
+                  print("Confirm clicked");
+                },
+                buttonColor: Colors.green,
 
-            overlayBlur: 5,
-            overlayColor: Colors.amber,
-            // padding: EdgeInsets.all(50)
-            showProgressIndicator: true,
-          progressIndicatorBackgroundColor: Colors.red,
-          snackbarStatus: (val){
-            print(val);
-          },
+                cancel: const Text("Cancels",style: TextStyle(color: Colors.white),),
+                confirm: const Text("Confirms",style: TextStyle(color:Colors.white),),
 
-          userInputForm: Form(child: Row(children: [Expanded(child: TextField())],))
+                actions: [ElevatedButton(onPressed: (){
+                  Get.back();
+                }, child: const Text("Action-1")),
+                ElevatedButton(onPressed: (){}, child:const Text("Action-2"))
+                ],
+                barrierDismissible: false,
+              );
 
-
-            );
-          }, child: const Text("Show Snackbar"))
-
-      ],),)
+              
+            }, child: const Text("Show Dialog"))
+          
+          ],),)
     );
   }
 }
