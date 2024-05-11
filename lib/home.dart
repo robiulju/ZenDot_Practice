@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quiz_system/next_screen.dart';
 
 class Home extends StatelessWidget{
   @override
@@ -14,6 +15,7 @@ class Home extends StatelessWidget{
           const Text("This is Home Screen",style: TextStyle(color: Colors.purpleAccent,fontSize: 30),),
           const SizedBox(height: 8,),
           ElevatedButton(onPressed: (){
+            Get.to(NextScreen());
 
           }, child: const Text("Next Screen",style: TextStyle(fontSize: 18),),
           

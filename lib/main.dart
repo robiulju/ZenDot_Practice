@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:get/get.dart";
 import "package:quiz_system/home.dart";
+import "package:quiz_system/next_screen.dart";
 
 void main(){
   runApp(FlutterApp());
@@ -13,8 +14,15 @@ class FlutterApp extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return GetMaterialApp(
-        title: "Dialog",
+        title: "Navigation",
         theme: ThemeData(primarySwatch: Colors.amber),
+        initialRoute: "/",
+        defaultTransition: Transition.zoom,
+        getPages: [GetPage(name: "/", page: ()=>FlutterApp()),
+        GetPage(name: "/home", page: ()=>Home()),
+        GetPage(name: "/nextScreen", page: ()=>NextScreen(),transition: Transition.leftToRight),
+        
+        ],
         home: const DashBoardScreen(),
     );
   }
@@ -26,6 +34,8 @@ class DashBoardScreen extends StatelessWidget{
  
   @override
   Widget build(BuildContext context){
+
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text("Navigation"),
@@ -38,14 +48,7 @@ class DashBoardScreen extends StatelessWidget{
           children: [
             ElevatedButton(
               onPressed: () {
-                Get.to(Home(),
-                fullscreenDialog: true,
-                // transition: Transition.zoom,
-                // duration: Duration(milliseconds: 4000),
-                // curve: Curves.bounceInOut,
-                
-                
-                );
+                Get.toNamed("/home");
               },
               child: const Text("Go to Home"),
             )
