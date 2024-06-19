@@ -24,7 +24,7 @@ class DashBoardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Dialog"),
+          title: const Text("Bottom Sheet"),
         ),
         body: Center(
           child: Column(
@@ -33,42 +33,32 @@ class DashBoardScreen extends StatelessWidget {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    // Get.defaultDialog();
-                    Get.defaultDialog(
-                      title: "Dialog Title",
-                      titleStyle: TextStyle(fontSize: 25),
-                      middleText: "This is middle text",
-                      middleTextStyle: TextStyle(fontSize: 20),
-                      backgroundColor: Colors.purple,
-                      radius: 60,
-                      content: const Row(
-                        children: [
-                          CircularProgressIndicator(),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          Expanded(child: Text("Data Loading"))
-                        ],
-                      ),
-                      textCancel: "Cancel",
-                      cancelTextColor: Colors.white,
-                      textConfirm: "Confirm",
-                      onCancel: () {},
-                      onConfirm: () {},
-                      buttonColor: Colors.green,
-                      actions: [
-                        ElevatedButton(
-                            onPressed: () {
-                              Get.back();
-                            },
-                            child: Text("Action-1")),
-                        ElevatedButton(
-                            onPressed: () {}, child: Text("Action-2"))
-                      ],
-                      barrierDismissible: false,
-                    );
+                    Get.bottomSheet(
+                        Wrap(
+                          children: <Widget>[
+                            ListTile(
+                              leading: const Icon(Icons.wb_sunny_outlined),
+                              title: Text("Light Theme"),
+                              onTap: () => {Get.changeTheme(ThemeData.light())},
+                            ),
+                            ListTile(
+                              leading: const Icon(Icons.wb_sunny),
+                              title: const Text("Dark Theme"),
+                              onTap: () => {Get.changeTheme(ThemeData.dark())},
+                            )
+                          ],
+                        ),
+                        // barrierColor: Colors.greenAccent.shade100,
+                        backgroundColor: Colors.purple,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            side: const BorderSide(
+                                color: Colors.white,
+                                style: BorderStyle.solid,
+                                width: 2.0)),
+                        enableDrag: false);
                   },
-                  child: const Text("Show Dialog"))
+                  child: const Text("Bottom Sheet"))
             ],
           ),
         ));
