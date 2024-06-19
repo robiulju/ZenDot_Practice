@@ -1,3 +1,5 @@
+// import "dart:ui_web";
+
 import "package:app/main.dart";
 import "package:flutter/material.dart";
 import "package:get/get.dart";
@@ -22,7 +24,7 @@ class DashBoardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("DashBoardScreen"),
+          title: Text("Dialog"),
         ),
         body: Center(
           child: Column(
@@ -31,54 +33,43 @@ class DashBoardScreen extends StatelessWidget {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    Get.snackbar(
-                        "Snackbar Title", "This will be snackbar message",
-                        snackPosition: SnackPosition.BOTTOM,
-                        // titleText: Text("Another Title"),
-                        // messageText: Text(
-                        //   "Another Message",
-                        //   style: TextStyle(color: Color.fromARGB(255, 12, 222, 40)),
-                        // ),
-
-                        colorText: Colors.red,
-                        backgroundColor: Colors.amberAccent,
-                        borderRadius: 30,
-                        margin: const EdgeInsets.all(10),
-                        maxWidth: 700,
-                        animationDuration: const Duration(milliseconds: 3000),
-                        backgroundGradient: const LinearGradient(colors: [
-                          Colors.red,
-                          Color.fromARGB(255, 23, 235, 12)
-                        ]),
-                        borderColor: Colors.black,
-                        borderWidth: 5,
-                        boxShadows: const [
-                          BoxShadow(
-                              color: Colors.pink,
-                              offset: Offset(30, 50),
-                              spreadRadius: 20,
-                              blurRadius: 8)
+                    // Get.defaultDialog();
+                    Get.defaultDialog(
+                      title: "Dialog Title",
+                      titleStyle: TextStyle(fontSize: 25),
+                      middleText: "This is middle text",
+                      middleTextStyle: TextStyle(fontSize: 20),
+                      backgroundColor: Colors.purple,
+                      radius: 60,
+                      content: const Row(
+                        children: [
+                          CircularProgressIndicator(),
+                          SizedBox(
+                            width: 16,
+                          ),
+                          Expanded(child: Text("Data Loading"))
                         ],
-                        isDismissible: true,
-                        // forwardAnimationCurve: Curves.bounceInOut,
-                        // duration: const Duration(milliseconds: 8000),
-                        icon: const Icon(
-                          Icons.send,
-                          color: Colors.white,
-                        ),
-                        // leftBarIndicatorColor: Colors.white,
-                        shouldIconPulse: false,
-                        mainButton:
-                            TextButton(onPressed: () {}, child: Text("Retry")));
+                      ),
+                      textCancel: "Cancel",
+                      cancelTextColor: Colors.white,
+                      textConfirm: "Confirm",
+                      onCancel: () {},
+                      onConfirm: () {},
+                      buttonColor: Colors.green,
+                      actions: [
+                        ElevatedButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            child: Text("Action-1")),
+                        ElevatedButton(
+                            onPressed: () {}, child: Text("Action-2"))
+                      ],
+                      barrierDismissible: false,
+                    );
                   },
-                  child: const Text("Show Snackbar")),
-              // OnTap: (val){
-              //   print("Snackbar Clicked");
-              // }
-
-              
+                  child: const Text("Show Dialog"))
             ],
-            
           ),
         ));
   }
