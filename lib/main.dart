@@ -1,5 +1,6 @@
 // import "dart:ui_web";
 
+import "package:app/home.dart";
 import "package:app/main.dart";
 import "package:flutter/material.dart";
 import "package:get/get.dart";
@@ -24,7 +25,7 @@ class DashBoardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Bottom Sheet"),
+          title: const Text("Navigation"),
         ),
         body: Center(
           child: Column(
@@ -33,32 +34,18 @@ class DashBoardScreen extends StatelessWidget {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    Get.bottomSheet(
-                        Wrap(
-                          children: <Widget>[
-                            ListTile(
-                              leading: const Icon(Icons.wb_sunny_outlined),
-                              title: Text("Light Theme"),
-                              onTap: () => {Get.changeTheme(ThemeData.light())},
-                            ),
-                            ListTile(
-                              leading: const Icon(Icons.wb_sunny),
-                              title: const Text("Dark Theme"),
-                              onTap: () => {Get.changeTheme(ThemeData.dark())},
-                            )
-                          ],
-                        ),
-                        // barrierColor: Colors.greenAccent.shade100,
-                        backgroundColor: Colors.purple,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            side: const BorderSide(
-                                color: Colors.white,
-                                style: BorderStyle.solid,
-                                width: 2.0)),
-                        enableDrag: false);
+                    // Get.to(
+                    
+                    //   Home(),
+                    //   fullscreenDialog: true,
+                    //   transition: Transition.zoom,
+                    //   duration: Duration(milliseconds: 4000),
+                    //   curve: Curves.bounceOut,
+                    // );
+
+                    Get.to(Home(), arguments: "This is a text from main.dart");
                   },
-                  child: const Text("Bottom Sheet"))
+                  child: Text("Go To Home")),
             ],
           ),
         ));
